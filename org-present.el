@@ -290,9 +290,11 @@ this to non-nil.")
 
 (defun org-present-run-after-navigate-functions ()
   "Fold slide if `org-present-startup-folded' is non-nil.
-Run org-present-after-navigate hook, passing the name of the presentation buffer and the current heading."
+Run org-present-after-navigate hook, passing the name of the
+presentation buffer and the current heading."
   (progn
-    (if org-present-startup-folded (org-cycle))
+    (if org-present-startup-folded
+        (oskah/org-unfold-heading))
     (let* ((title-text (thing-at-point 'line))
            (safe-title-text (replace-regexp-in-string "^[ \*]" "" title-text))
            (current-heading (org-present-trim-string safe-title-text)))
